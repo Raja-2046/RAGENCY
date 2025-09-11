@@ -19,5 +19,6 @@ app.use("/service",require("./routes/service"))
 
 //server
 const PORT=process.env.PORT;
+app.get("/", (req, res) => res.send("Express on Vercel"));
 app.listen(PORT,(err)=> err ?
 console.log(err) : console.log("server is running"));
