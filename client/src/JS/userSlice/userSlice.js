@@ -1,10 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const serverURL = process.env.REACT_APP_SERVER_API_UR;
+
 export const userRegister = createAsyncThunk("user/register", async (user) => {
   try {
     let response = await axios.post(
-      "http://localhost:5000/user/register",
+      `${serverURL}/user/register`,
       user
     );
     return response;
@@ -14,7 +16,7 @@ export const userRegister = createAsyncThunk("user/register", async (user) => {
 });
 export const userlogin = createAsyncThunk("user/logi", async (user) => {
   try {
-    let response = await axios.post("http://localhost:5000/user/login", user);
+    let response = await axios.post(`${serverURL}/user/login`, user);
     return await response;
   } catch (error) {
     console.log(error);
@@ -22,7 +24,7 @@ export const userlogin = createAsyncThunk("user/logi", async (user) => {
 });
 export const userCurrent = createAsyncThunk("user/current", async () => {
   try {
-    let response = await axios.get("http://localhost:5000/user/current", {
+    let response = await axios.get(`${serverURL}/user/current`, {
       headers: {
         Authorization: localStorage.getItem("token"),
       },

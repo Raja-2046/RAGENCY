@@ -2,9 +2,13 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import Swal from 'sweetalert2';
 
+
+const serverURL = process.env.REACT_APP_SERVER_API_UR;
+
+
 export const getservice = createAsyncThunk("service/get", async () => {
   try {
-    let result = await axios.get("http://localhost:5000/service/");
+    let result = await axios.get(`${serverURL}/service/`);
     return result;
   } catch (error) {
     console.log(error);
@@ -12,7 +16,7 @@ export const getservice = createAsyncThunk("service/get", async () => {
 });
 export const addservice = createAsyncThunk("service/add", async (newservice) => {
   try {
-    let result = await axios.post("http://localhost:5000/service/add", newservice, {
+    let result = await axios.post(`${serverURL}/service/add`, newservice, {
       headers: {
         Authorization: localStorage.getItem("token"),
       },
@@ -29,7 +33,7 @@ export const addservice = createAsyncThunk("service/add", async (newservice) => 
 });
 export const deleteservice = createAsyncThunk("service/delete", async (id) => {
   try {
-    let result = await axios.delete(`http://localhost:5000/service/${id}`, {
+    let result = await axios.delete(`${serverURL}/service/${id}`, {
       headers: {
         Authorization: localStorage.getItem("token"),
       },
@@ -49,7 +53,7 @@ export const editservice = createAsyncThunk(
   "service/edit",
   async ({ id, edited }) => {
     try {
-      let result = await axios.put(`http://localhost:5000/service/${id}`, edited);
+      let result = await axios.put(`${serverURL}/service/${id}`, edited);
       return result;
     } catch (error) {
       console.log(error);

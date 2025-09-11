@@ -1,9 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const serverURL = process.env.REACT_APP_SERVER_API_UR;
+
 export const getreservation = createAsyncThunk("reservation/get", async () => {
   try {
-    let result = await axios.get("http://localhost:5000/reservation/");
+    let result = await axios.get(`${serverURL}/reservation/`);
     return result;
   } catch (error) {
     console.log(error);
@@ -11,7 +13,7 @@ export const getreservation = createAsyncThunk("reservation/get", async () => {
 });
 export const addreservation = createAsyncThunk("reservation/add", async (newreservation) => {
   try {
-    let result = await axios.post("http://localhost:5000/reservation/add", newreservation);
+    let result = await axios.post(`${serverURL}/reservation/add`, newreservation);
     return result;
   } catch (error) {
     console.log(error);
@@ -19,7 +21,7 @@ export const addreservation = createAsyncThunk("reservation/add", async (newrese
 });
 export const deletereservation = createAsyncThunk("reservation/delete", async (id) => {
   try {
-    let result = await axios.delete(`http://localhost:5000/reservation/${id}`);
+    let result = await axios.delete(`${serverURL}/reservation/${id}`);
     return result;
   } catch (error) {
     console.log(error);
@@ -30,7 +32,7 @@ export const editreservation = createAsyncThunk(
   "reservation/edit",
   async ({ id, edited }) => {
     try {
-      let result = await axios.put(`http://localhost:5000/reservation/${id}`, edited);
+      let result = await axios.put(`${serverURL}/reservation/${id}`, edited);
       return result;
     } catch (error) {
       console.log(error);
