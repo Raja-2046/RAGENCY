@@ -39,7 +39,7 @@ function Navbarr() {
       }}
     >
       <Container>
-        <Navbar.Brand href="#">
+        <Navbar.Brand>
           <RouterLink to="/" style={itemStyle}>
             <img src="logo.png" width={150} />
           </RouterLink>
@@ -71,12 +71,12 @@ function Navbarr() {
             </Nav.Link>
             {!user ? (
               <>
-                <Nav.Link href="#action2">
+                {/* <Nav.Link href="#action2">
                   <RouterLink to="/register" style={itemStyle}>
                     Register
                   </RouterLink>
-                </Nav.Link>
-                <Nav.Link href="#action2">
+                </Nav.Link> */}
+                <Nav.Link>
                   <RouterLink to="/login" style={itemStyle}>
                     Login
                   </RouterLink>
@@ -84,7 +84,7 @@ function Navbarr() {
               </>
             ) : (
               <>
-                <Nav.Link href="#action2">
+                <Nav.Link>
                   <RouterLink to="/Profil" style={itemStyle}>
                     Profil
                   </RouterLink>
