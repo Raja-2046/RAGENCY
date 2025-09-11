@@ -1,0 +1,120 @@
+import React, { useState } from "react";
+import { Card, Button, Container, Row, Col, Modal, Form } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import ReservationsList from "./ReservationsList";
+import AddServiceModal from "./addServiceModal";
+
+export default function Profile() {
+  const reservations = useSelector((state) => state.reservation.reservationlist);
+  const [showTable, setShowTable] = useState(false);
+  const [showServiceModal, setShowServiceModal] = useState(false);
+
+  const [situations, setSituations] = useState(Array(20).fill(""));
+
+  const handleShowMore = () => {
+    setShowTable(!showTable);
+  };
+  const handleClose = () => {
+    setShowTable(false);
+  };
+
+  const handleServiceClose = () => {
+    setShowServiceModal(false);
+  };
+  const handleServiceShow = () => {
+    setShowServiceModal(true);
+  };
+
+  const handleSituationChange = (index, value) => {
+    const newSituations = [...situations];
+    newSituations[index] = value;
+    setSituations(newSituations);
+  };
+
+  const handleSaveService = () => {
+
+  }
+
+  const profile = {
+    name: "Raja",
+    lastname: "Boussada",
+    email: "rajaaboussaada@ieee.org",
+    title: "hello Our Beautiful Lady ❤️ !",
+    avatar:
+      "data:image/jpeg;base64,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",
+  };
+
+  return (
+    <div>
+      <div
+        className="d-flex align-items-center justify-content-center min-vh-100"
+        style={{
+          background: "linear-gradient(135deg, #ff5f6d, #ffc371)",
+        }}
+      >
+        <Container>
+          <Row className="justify-content-center">
+            <Col md={10} lg={8}>
+              <Card className="shadow-lg border-0 rounded-4 text-center p-4">
+                <div style={{ marginTop: "-70px" }}>
+                  <img
+                    src={profile.avatar}
+                    alt="Profile"
+                    className="rounded-circle border border-3 border-white shadow"
+                    width="120"
+                    height="120"
+                  />
+                </div>
+
+                <Card.Body>
+                  <h4 className="fw-bold mb-0">
+                    {profile.name} {profile.lastname}
+                  </h4>
+                  <p className="text-muted">{profile.email}</p>
+                  <p className="text-danger fw-bold mb-4">{profile.title}</p>
+
+                  <div className="d-flex justify-content-center gap-3">
+                    <Button
+                      variant="danger"
+                      className="px-4 rounded-pill shadow-sm"
+                      onClick={handleShowMore}
+                    >
+                      {showTable ? "Hide My Cuties Clients" : "My Cuties Clients !"}
+                    </Button>
+
+                    <Button
+                      variant="danger"
+                      className="px-4 rounded-pill shadow-sm"
+                      onClick={handleServiceShow}
+                    >
+                      ➕ Add a Service ❤️
+                    </Button>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+
+     
+      {showTable && (
+        <Modal show={showTable} size="xl" onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Reservations</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <ReservationsList />
+          </Modal.Body>
+        </Modal>
+      )}
+
+     
+     <AddServiceModal 
+      showServiceModal={showServiceModal}
+      handleServiceClose={handleServiceClose}
+      handleServiceShow={handleServiceShow}
+    />
+    </div>
+  );
+}
