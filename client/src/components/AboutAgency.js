@@ -8,7 +8,7 @@ export default function AboutProfile() {
         <Row className="align-items-center g-5">
           <Col md={5} className="text-center">
             <img
-              src="https://scontent.ftun4-2.fna.fbcdn.net/v/t39.30808-6/490591839_23912469018356194_5410493727901022950_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=1CBMdBFfEjUQ7kNvwGrDqFd&_nc_oc=AdligLC7QSxX9ok2GMo6KlcN2AYOl7Zph_SZN3mmElf6FkNk8Am6MrWcjEvyqmzCED8&_nc_zt=23&_nc_ht=scontent.ftun4-2.fna&_nc_gid=Qx8BMY0MqWSjTMXqwD7M0g&oh=00_AfZXGVRSk0KRGTRxadjTNR7u3hgWlk8MXDbR3mFsRRUOBQ&oe=68C6A6BD"
+              src="/raja.jpg"
               alt="Profile"
               className="img-fluid rounded-4 shadow-lg"
             />
