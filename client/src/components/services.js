@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { FaBullhorn, FaChartLine, FaLaptopCode } from "react-icons/fa";
-import { MdDeleteForever } from "react-icons/md";
+import { MdDeleteForever, MdEdit } from "react-icons/md";
 import "./Services.css";
 import BookModal from "./BookModal";
+import EditServiceModal from "./editServiceModal";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteservice, getservice } from "../JS/serviceSlice";
 
 const Services = ({ping, setping}) => {
   const dispatch = useDispatch();
+  const [showServiceModal, setShowServiceModal] = useState(false);
+  const [editedId, setEditedId] = useState(null);
   const services=useSelector((state)=>state.service.servicelist);
   const user = useSelector((state) => state.user.user);
 
@@ -43,6 +46,14 @@ const handleDeleteService = async(id) => {
   await dispatch(deleteservice(id));
   dispatch(getservice());
 }
+const handleServiceClose = () => {
+  setShowServiceModal(false);
+  setEditedId(null);
+  };
+const handleServiceShow = (id) => {
+  setEditedId(id)
+  setShowServiceModal(true);
+};
 
   return (
     <div id="services">
@@ -55,18 +66,37 @@ const handleDeleteService = async(id) => {
                 <Card.Body>
                   <div className="mb-3 service-icon">{service?.icon}</div>
                   {user && (
-                  <MdDeleteForever
-                    color="red"
-                    style={{ fontSize: "25px", cursor: "pointer", float: 'right'}}
-                    onClick={() => {handleDeleteService(service._id)}}
-                  />
+                    <div>
+                      <MdDeleteForever
+                        color="red"
+                        style={{
+                          fontSize: "25px",
+                          cursor: "pointer",
+                          float: "right",
+                        }}
+                        onClick={() => {
+                          handleDeleteService(service._id);
+                        }}
+                      />
+                      <MdEdit
+                        color="red"
+                        style={{
+                          fontSize: "25px",
+                          cursor: "pointer",
+                          float: "right",
+                        }}
+                        onClick={() => {
+                          handleServiceShow(service._id);
+                        }}
+                      />
+                    </div>
                   )}
                   <Card.Title className="fw-bold fs-4">
                     {service?.title}
                   </Card.Title>
 
                   <Card.Text className="service-desc">
-                    {service?.description} 
+                    {service?.description}
                   </Card.Text>
 
                   <div className="service-price">{service.price}</div>
@@ -78,6 +108,14 @@ const handleDeleteService = async(id) => {
           ))}
         </Row>
       </Container>
+      {showServiceModal && (
+        <EditServiceModal
+          showServiceModal={showServiceModal}
+          handleServiceClose={handleServiceClose}
+          handleServiceShow={handleServiceShow}
+          editedId={editedId}
+        />
+      )}
       {/* {show && (
       <BookModal 
         show={show}

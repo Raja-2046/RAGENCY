@@ -14,6 +14,17 @@ export const getservice = createAsyncThunk("service/get", async () => {
     console.log(error);
   }
 });
+
+export const getOneService = createAsyncThunk("service/getOne", async (id) => {
+  try {
+    let result = await axios.get(`${serverURL}/service/${id}`);
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+
 export const addservice = createAsyncThunk("service/add", async (newservice) => {
   try {
     let result = await axios.post(`${serverURL}/service/add`, newservice, {
@@ -63,6 +74,7 @@ export const editservice = createAsyncThunk(
 
 const initialState = {
   servicelist: null,
+  service: null,
   status: null,
 };
 
@@ -80,6 +92,16 @@ export const serviceSlice = createSlice({
         state.servicelist = action.payload.data.services;
       })
       .addCase(getservice.rejected, (state) => {
+        state.status = "fail";
+      })
+      .addCase(getOneService.pending, (state) => {
+        state.status = "pending";
+      })
+      .addCase(getOneService.fulfilled, (state, action) => {
+        state.status = "success";
+        state.service = action.payload.data.service;
+      })
+      .addCase(getOneService.rejected, (state) => {
         state.status = "fail";
       })
       .addCase(addservice.pending, (state) => {
