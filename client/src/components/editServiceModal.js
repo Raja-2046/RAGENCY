@@ -21,7 +21,7 @@ function EditServiceModal ({ editedId, showServiceModal, handleServiceClose }) {
       description: fetchedService?.description,
       price: fetchedService?.price,
     });
-  }, [fetchedService, service]);
+  }, [fetchedService]);
     const handleChange = (event) => {
         setService({ ...service, [event.target.name]: event.target.value })
     }
