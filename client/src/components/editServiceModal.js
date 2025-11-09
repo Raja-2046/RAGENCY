@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Modal, Form } from "react-bootstrap";
-import { addservice, editservice, getOneService, getservice } from "../JS/serviceSlice";
+import { editservice, getOneService, getservice } from "../JS/serviceSlice";
 
 function EditServiceModal ({ editedId, showServiceModal, handleServiceClose }) {
   const fetchedService=useSelector((state)=>state.service.service);
