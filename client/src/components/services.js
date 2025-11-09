@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { FaBullhorn, FaChartLine, FaLaptopCode } from "react-icons/fa";
+import { Container, Row, Col, Card, } from "react-bootstrap";
 import { MdDeleteForever, MdEdit } from "react-icons/md";
 import "./Services.css";
 import BookModal from "./BookModal";
