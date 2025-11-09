@@ -13,7 +13,7 @@ function EditServiceModal ({ editedId, showServiceModal, handleServiceClose }) {
     });
   useEffect(() => {
     dispatch(getOneService(editedId));
-  }, []);
+  }, [dispatch, editedId]);
   useEffect(() => {
     setService({
       ...service,
@@ -21,7 +21,7 @@ function EditServiceModal ({ editedId, showServiceModal, handleServiceClose }) {
       description: fetchedService?.description,
       price: fetchedService?.price,
     });
-  }, [fetchedService]);
+  }, [fetchedService, service]);
     const handleChange = (event) => {
         setService({ ...service, [event.target.name]: event.target.value })
     }
