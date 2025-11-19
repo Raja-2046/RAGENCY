@@ -1,5 +1,5 @@
+import { Link } from "react-scroll";
 import { Container, Row, Col, Button } from 'react-bootstrap';
-
 const Banner = () => {
   const heroStyles = {
     background: `linear-gradient(rgba(220, 38, 38, 0.8), rgba(153, 27, 27, 0.9)), url("https://html.tonatheme.com/2025/marketex/assets/images/banner/banner__image_1.png")`,
@@ -61,16 +61,16 @@ const Banner = () => {
                 size="lg"
                 className="fw-semibold px-4 py-3"
                 style={{
-                  minWidth: '200px',
+                  minWidth: '300px',
                   backgroundColor: '#dc2626',
                   borderColor: '#dc2626',
                   color: 'white',
-                  fontSize: '1.1rem',
+                  fontSize: '2rem',
                   transition: 'all 0.2s',
                   boxShadow: '0 4px 15px rgba(220, 38, 38, 0.3)'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'scale(1.05)';
+                  e.currentTarget.style.transform = 'scale(1.2)';
                   e.currentTarget.style.backgroundColor = '#b91c1c';
                 }}
                 onMouseLeave={(e) => {
@@ -78,9 +78,23 @@ const Banner = () => {
                   e.currentTarget.style.backgroundColor = '#dc2626';
                 }}
               >
-                Start Growing Today
+                Special Package: Leisure, Sports & Culture Project
               </Button>
             </div>
+              <Link to="services" smooth={true} duration={100} offset={-80}>
+                <div
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: "2.5em",
+                    color: "white",
+                    marginTop: "15px",
+                    cursor: 'pointer',
+                    animation: "price 1.8s infinite",
+                  }}
+                >
+                  Reserve for Free! ❤️
+                </div>
+              </Link>
           </Col>
         </Row>
       </Container>
